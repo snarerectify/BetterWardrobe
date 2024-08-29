@@ -3,3 +3,23 @@ author: Snare
 api: 5.3.0
 main: snare\BetterWardrobe\BetterWardrobe
 version: 1.0.0
+
+permissions:
+  betterwardrobe.slot.1:
+    default: true
+  betterwardrobe.slot.2:
+    default: op
+  betterwardrobe.slot.3:
+    default: op
+  betterwardrobe.slot.4:
+    default: op
+  betterwardrobe.slot.5:
+    default: op
+  betterwardrobe.slot.6:
+    default: op
+  betterwardrobe.slot.7:
+    default: op
+  betterwardrobe.slot.8:
+    default: op
+  betterwardrobe.slot.9:
+    default: op
