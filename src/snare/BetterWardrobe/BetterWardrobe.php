@@ -7,6 +7,8 @@ namespace snare\BetterWardrobe;
 use Jibix\Forms\Forms;
 use muqsit\invmenu\InvMenuHandler;
 use pocketmine\plugin\PluginBase;
+use snare\BetterWardrobe\command\WardrobeCommand;
+use snare\BetterWardrobe\listener\EventListener;
 use snare\BetterWardrobe\session\SessionManager;
 
 class BetterWardrobe extends PluginBase
@@ -27,6 +29,8 @@ class BetterWardrobe extends PluginBase
         $this->saveDefaultConfig();
         if(!InvMenuHandler::isRegistered()) InvMenuHandler::register($this);
         if(!Forms::isRegistered()) Forms::register($this);
+        $this->getServer()->getCommandMap()->register("BetterWardrobe", new WardrobeCommand());
+        $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
 
         $this->sessionManager = new SessionManager();
     }

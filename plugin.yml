@@ -5,8 +5,14 @@ main: snare\BetterWardrobe\BetterWardrobe
 version: 1.0.0
 
 permissions:
-  betterwardrobe.slot.1:
+  betterwardrobe.wardrobe.command:
     default: true
+  betterwardrobe.manage.command:
+    default: true
+  betterwardrobe.slot.0:
+    default: true
+  betterwardrobe.slot.1:
+    default: op
   betterwardrobe.slot.2:
     default: op
   betterwardrobe.slot.3:
@@ -20,6 +26,4 @@ permissions:
   betterwardrobe.slot.7:
     default: op
   betterwardrobe.slot.8:
-    default: op
-  betterwardrobe.slot.9:
     default: op
