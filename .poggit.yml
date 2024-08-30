@@ -12,6 +12,6 @@ projects:
         version: ^4.6.4
       - src: poggit/libasynql/libasynql
         version: ^4.1.6
-      - src: Jibix/Forms/Forms
-        version: ^1.0
+      - src: LatamPMDevs/FormAPI/libFormAPI
+        version: ^2.1.1
 ...
