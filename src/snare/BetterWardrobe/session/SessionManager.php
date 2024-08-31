@@ -59,7 +59,7 @@ class SessionManager
     {
         $this->dataConnector->executeInsert("data.users.add", [
             "name" => $name,
-            "wardrobe" => json_encode("")
+            "wardrobe" => json_encode([])
         ]);
 
         $this->sessions[strtolower($name)] = new Session($name, json_encode([]));
