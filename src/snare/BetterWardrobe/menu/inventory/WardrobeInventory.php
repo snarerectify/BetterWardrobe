@@ -138,33 +138,39 @@ class WardrobeInventory
             8 => DyeColor::PURPLE()
         ];
 
+        $wardrobeIds = range(0, 8);
+
+        foreach ($wardrobeIds as $id) {
+            if($this->player->hasPermission("betterwardrobe.slot." . $id)) {
+                $this->menu->getInventory()->setItem($id + 36, VanillaItems::DYE()->setColor(DyeColor::GRAY())->setCustomName(TextFormat::RESET . TextFormat::GRAY . "Slot " . $id + 1 . ": " . TextFormat::GREEN . "Unlocked")->setLore([
+                    "",
+                    TextFormat::RESET . TextFormat::GRAY . "Right click to equip this set or",
+                    TextFormat::RESET . TextFormat::GRAY . "swap it out for your currently equipped set."
+                ]));
+            } else {
+                $this->menu->getInventory()->setItem($id + 36, VanillaItems::DYE()->setColor(DyeColor::RED())->setCustomName(TextFormat::RESET . TextFormat::GRAY . "Slot " . $id + 1 . ": " . TextFormat::RED . "Locked"));
+            }
+
+            foreach ($idMap[$id] as $itemSlot) {
+                if($this->menu->getInventory()->getItem($itemSlot) === VanillaItems::AIR() && $this->player->hasPermission("betterwardrobe.slot." . $id)) {
+                    $this->menu->getInventory()->setItem($itemSlot, VanillaBlocks::STAINED_GLASS_PANE()->setColor($colorMap[$id])->asItem());
+                }
+            }
+        }
+
         foreach ($wardrobe as $wardrobeId => $set) {
            /** @var Item $item */
             foreach ($set as $slot => $item) {
                 if($this->player->hasPermission("betterwardrobe.slot." . $wardrobeId)) {
-                    $this->menu->getInventory()->setItem($wardrobeId + 36, VanillaItems::DYE()->setColor(DyeColor::GRAY())->setCustomName(TextFormat::RESET . TextFormat::GRAY . "Slot " . $wardrobeId + 1 . ": " . TextFormat::GREEN . "Unlocked")->setLore([
-                        "",
-                        TextFormat::RESET . TextFormat::GRAY . "Right click to equip this set or",
-                        TextFormat::RESET . TextFormat::GRAY . "swap it out for your currently equipped set."
-                    ]));
-
                     if($item instanceof Armor) {
                         $this->menu->getInventory()->setItem($idMap[$wardrobeId][$slot], $item);
                     }
-                } else {
-                    $this->menu->getInventory()->setItem($wardrobeId + 36, VanillaItems::DYE()->setColor(DyeColor::RED())->setCustomName(TextFormat::RESET . TextFormat::GRAY . "Slot " . $wardrobeId + 1 . ": " . TextFormat::RED . "Locked"));
-                }
-            }
-
-            foreach ($idMap[$wardrobeId] as $itemSlot) {
-                if($this->menu->getInventory()->getItem($itemSlot) === VanillaItems::AIR() && $this->player->hasPermission("betterwardrobe.slot." . $wardrobeId)) {
-                    $this->menu->getInventory()->setItem($itemSlot, VanillaBlocks::STAINED_GLASS_PANE()->setColor($colorMap[$wardrobeId])->asItem());
                 }
             }
         }
 
         foreach ($this->menu->getInventory()->getContents(true) as $slot => $item) {
-            if($item === VanillaItems::AIR()) $this->menu->getInventory()->setItem($slot, VanillaBlocks::STAINED_GLASS_PANE()->setColor(DyeColor::BLACK())->asItem());
+            if($item->getTypeId() === VanillaItems::AIR()->getTypeId()) $this->menu->getInventory()->setItem($slot, VanillaBlocks::STAINED_GLASS_PANE()->setColor(DyeColor::BLACK())->asItem());
         }
     }
 }
