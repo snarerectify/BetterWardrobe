@@ -7,8 +7,6 @@ namespace snare\BetterWardrobe\command\subCommand;
 use CortexPE\Commando\BaseSubCommand;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
-use pocketmine\plugin\PluginBase;
-use pocketmine\plugin\PluginOwned;
 use snare\BetterWardrobe\BetterWardrobe;
 use snare\BetterWardrobe\menu\inventory\WardrobeInventory;
 

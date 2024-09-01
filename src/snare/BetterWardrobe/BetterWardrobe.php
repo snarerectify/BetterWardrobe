@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace snare\BetterWardrobe;
 
+use CortexPE\Commando\exception\HookAlreadyRegistered;
+use CortexPE\Commando\PacketHooker;
 use muqsit\invmenu\InvMenuHandler;
 use pocketmine\plugin\PluginBase;
 use snare\BetterWardrobe\command\WardrobeCommand;
@@ -23,10 +25,14 @@ class BetterWardrobe extends PluginBase
         self::$instance = $this;
     }
 
+    /**
+     * @throws HookAlreadyRegistered
+     */
     public function onEnable(): void
     {
         $this->saveDefaultConfig();
         if(!InvMenuHandler::isRegistered()) InvMenuHandler::register($this);
+        if(!PacketHooker::isRegistered()) PacketHooker::register($this);
         $this->getServer()->getCommandMap()->register("BetterWardrobe", new WardrobeCommand());
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
 

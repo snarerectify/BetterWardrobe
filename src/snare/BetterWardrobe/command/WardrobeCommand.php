@@ -9,7 +9,9 @@ use pocketmine\command\CommandSender;
 use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginOwned;
 use snare\BetterWardrobe\BetterWardrobe;
+use snare\BetterWardrobe\command\subCommand\WardrobeEquipSubCommand;
 use snare\BetterWardrobe\command\subCommand\WardrobeManageSubCommand;
+use snare\BetterWardrobe\command\subCommand\WardrobeViewSubCommand;
 
 class WardrobeCommand extends BaseCommand implements PluginOwned
 {
@@ -22,6 +24,8 @@ class WardrobeCommand extends BaseCommand implements PluginOwned
     protected function prepare() : void
     {
         $this->registerSubCommand(new WardrobeManageSubCommand());
+        $this->registerSubCommand(new WardrobeEquipSubCommand());
+        $this->registerSubCommand(new WardrobeViewSubCommand());
     }
 
     public function onRun(CommandSender $sender, string $aliasUsed, array $args) : void

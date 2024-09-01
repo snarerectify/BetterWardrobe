@@ -20,3 +20,5 @@ database:
 
 no-permission: "&cYou do not have permission to access that wardrobe slot!"
 equipped-set: "&aSuccessfully equipped set number &e#{SET}&a!"
+invalid-set: "&cPlease specify a set number between 1 and 9!"
+invalid-player: "&cPlease specify a valid player!"
