@@ -57,7 +57,7 @@ class Session
      */
     public function addItem(int $setId, int $slot, Item $item, bool $swap = false) : void
     {
-        $wardrobe = json_decode($this->wardrobe);
+        $wardrobe = json_decode($this->wardrobe, true);
 
         if($swap) {
             if(($p = Server::getInstance()->getPlayerExact($this->name)) !== null && isset($this->getUsableWardrobe()[$setId][$slot])) {
