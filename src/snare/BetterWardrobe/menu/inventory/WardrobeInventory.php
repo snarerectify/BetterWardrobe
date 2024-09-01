@@ -51,9 +51,12 @@ class WardrobeInventory
                 }
 
                 if($item->getTypeId() === VanillaItems::AIR()->getTypeId() && isset($session->getUsableWardrobe()[$setId][$slot])) {
+                    var_dump("swapping");
                     $session->addItem($setId, $slot, VanillaItems::AIR(), true);
                 } elseif($item->getTypeId() !== VanillaItems::AIR()->getTypeId() && (!isset($session->getUsableWardrobe()[$setId][$slot]) || $session->getUsableWardrobe()[$setId][$slot]->getTypeId() === VanillaItems::AIR()->getTypeId())) {
+                    var_dump("x");
                     $session->addItem($setId, $slot, $item);
+                    $this->player->getArmorInventory()->setItem($slot, VanillaItems::AIR());
                 }
             }
 
