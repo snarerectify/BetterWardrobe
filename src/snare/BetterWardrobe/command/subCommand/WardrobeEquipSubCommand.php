@@ -44,12 +44,12 @@ class WardrobeEquipSubCommand extends BaseSubCommand
             return;
         }
 
-        if(!$sender->hasPermission("betterwardrobe.set." . (int)$args["set"])) {
+        if(!$sender->hasPermission("betterwardrobe.set." . (int)$args["set"] - 1)) {
             $sender->sendMessage(TextFormat::colorize(BetterWardrobe::getBetterWardrobe()->getConfig()->get("no-permission")));
             return;
         }
 
-        $setId = (int)$args["set"];
+        $setId = (int)$args["set"] - 1;
         $session = BetterWardrobe::getBetterWardrobe()->getSessionManager()->getSession($sender->getName());
 
         foreach ($sender->getArmorInventory()->getContents(true) as $slot => $item) {
@@ -65,7 +65,7 @@ class WardrobeEquipSubCommand extends BaseSubCommand
             }
         }
 
-        $sender->sendMessage(str_replace("{SET}", (string)$setId, TextFormat::colorize(BetterWardrobe::getBetterWardrobe()->getConfig()->get("equipped-set"))));
+        $sender->sendMessage(str_replace("{SET}", (string)($setId + 1), TextFormat::colorize(BetterWardrobe::getBetterWardrobe()->getConfig()->get("equipped-set"))));
     }
 
 }

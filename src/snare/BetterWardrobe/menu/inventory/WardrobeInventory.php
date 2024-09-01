@@ -63,7 +63,7 @@ class WardrobeInventory
 
             return $transaction->discard();
         });
-        $this->menu->setName("My Wardrobe (1/1");
+        $this->menu->setName("My Wardrobe (1/1)");
 
         $this->menu->send($player);
     }
