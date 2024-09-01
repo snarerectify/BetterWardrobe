@@ -61,6 +61,7 @@ class Session
         $wardrobe = json_decode($this->wardrobe, true);
 
         if($swap) {
+            var_dump("swapping");
             if(($p = Server::getInstance()->getPlayerExact($this->name)) !== null) {
                 if(isset($this->getUsableWardrobe()[$setId][$slot])) {
                     $p->getArmorInventory()->setItem($slot, $this->getUsableWardrobe()[$setId][$slot]);

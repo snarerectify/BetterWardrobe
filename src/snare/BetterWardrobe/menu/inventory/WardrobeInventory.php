@@ -58,7 +58,7 @@ class WardrobeInventory
             }
 
             $transaction->getPlayer()->removeCurrentWindow();
-            $transaction->getPlayer()->sendMessage(str_replace("{SET}", (string)($setId + 1), BetterWardrobe::getBetterWardrobe()->getConfig()->get("equipped-set")));
+            $transaction->getPlayer()->sendMessage(str_replace("{SET}", (string)($setId + 1), TextFormat::colorize(BetterWardrobe::getBetterWardrobe()->getConfig()->get("equipped-set"))));
 
             return $transaction->discard();
         });
