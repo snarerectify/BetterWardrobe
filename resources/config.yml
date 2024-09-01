@@ -19,3 +19,4 @@ database:
   worker-limit: 1
 
 no-permission: "&cYou do not have permission to access that wardrobe slot!"
+equipped-set: "&aSuccessfully equipped set number &e#{SET}&a!"

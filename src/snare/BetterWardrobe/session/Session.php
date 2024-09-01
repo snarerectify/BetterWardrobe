@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace snare\BetterWardrobe\session;
 
 use pocketmine\item\Item;
+use pocketmine\item\VanillaItems;
 use pocketmine\Server;
 use snare\BetterWardrobe\BetterWardrobe;
 use snare\BetterWardrobe\utils\Utils;
@@ -60,8 +61,12 @@ class Session
         $wardrobe = json_decode($this->wardrobe, true);
 
         if($swap) {
-            if(($p = Server::getInstance()->getPlayerExact($this->name)) !== null && isset($this->getUsableWardrobe()[$setId][$slot])) {
-                $p->getArmorInventory()->setItem($slot, $this->getUsableWardrobe()[$setId][$slot]);
+            if(($p = Server::getInstance()->getPlayerExact($this->name)) !== null) {
+                if(isset($this->getUsableWardrobe()[$setId][$slot])) {
+                    $p->getArmorInventory()->setItem($slot, $this->getUsableWardrobe()[$setId][$slot]);
+                } else {
+                    $p->getArmorInventory()->setItem($slot, VanillaItems::AIR());
+                }
             }
         }
 
