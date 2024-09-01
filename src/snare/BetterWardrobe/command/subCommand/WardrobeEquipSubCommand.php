@@ -19,7 +19,7 @@ class WardrobeEquipSubCommand extends BaseSubCommand
     public function __construct()
     {
         parent::__construct(BetterWardrobe::getBetterWardrobe(), "equip", "Equip a set.");
-        $this->setPermission("betterwardrobe.command.equip");
+        $this->setPermission("betterwardrobe.equip.command");
     }
 
     /**
