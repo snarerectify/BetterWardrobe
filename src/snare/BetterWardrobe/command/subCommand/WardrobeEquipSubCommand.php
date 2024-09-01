@@ -44,7 +44,7 @@ class WardrobeEquipSubCommand extends BaseSubCommand
             return;
         }
 
-        if(!$sender->hasPermission("betterwardrobe.set." . (int)$args["set"] - 1)) {
+        if(!$sender->hasPermission("betterwardrobe.slot." . ((int)$args["set"] - 1))) {
             $sender->sendMessage(TextFormat::colorize(BetterWardrobe::getBetterWardrobe()->getConfig()->get("no-permission")));
             return;
         }
