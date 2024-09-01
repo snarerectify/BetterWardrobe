@@ -47,13 +47,13 @@ class WardrobeInventory
             $setId = $action->getSlot() - 36;
 
             foreach ($transaction->getPlayer()->getArmorInventory()->getContents(true) as $slot => $item) {
-                if($item === VanillaItems::AIR() && !isset($session->getUsableWardrobe()[$setId][$slot])) {
+                if($item->getTypeId() === VanillaItems::AIR()->getTypeId() && !isset($session->getUsableWardrobe()[$setId][$slot])) {
                     continue;
                 }
 
-                if($item === VanillaItems::AIR() && isset($session->getUsableWardrobe()[$setId][$slot])) {
+                if($item->getTypeId() === VanillaItems::AIR()->getTypeId() && isset($session->getUsableWardrobe()[$setId][$slot])) {
                     $session->addItem($setId, $slot, VanillaItems::AIR(), true);
-                } elseif($item !== VanillaItems::AIR() && !isset($session->getUsableWardrobe()[$setId][$slot])) {
+                } elseif($item->getTypeId() !== VanillaItems::AIR()->getTypeId() && !isset($session->getUsableWardrobe()[$setId][$slot])) {
                     $session->addItem($setId, $slot, $item);
                 }
             }
@@ -152,7 +152,7 @@ class WardrobeInventory
             }
 
             foreach ($idMap[$id] as $itemSlot) {
-                if($this->menu->getInventory()->getItem($itemSlot) === VanillaItems::AIR() && $this->player->hasPermission("betterwardrobe.slot." . $id)) {
+                if($this->menu->getInventory()->getItem($itemSlot)->getTypeId() === VanillaItems::AIR()->getTypeId() && $this->player->hasPermission("betterwardrobe.slot." . $id)) {
                     $this->menu->getInventory()->setItem($itemSlot, VanillaBlocks::STAINED_GLASS_PANE()->setColor($colorMap[$id])->asItem());
                 }
             }
