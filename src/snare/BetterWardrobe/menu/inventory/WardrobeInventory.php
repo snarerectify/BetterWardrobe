@@ -46,13 +46,13 @@ class WardrobeInventory
             $setId = $action->getSlot() - 36;
 
             foreach ($transaction->getPlayer()->getArmorInventory()->getContents(true) as $slot => $item) {
-                if($item->getTypeId() === VanillaItems::AIR()->getTypeId() && !isset($session->getUsableWardrobe()[$setId][$slot])) {
+                if($item->getTypeId() === VanillaItems::AIR()->getTypeId() && (!isset($session->getUsableWardrobe()[$setId][$slot]) || $session->getUsableWardrobe()[$setId][$slot]->getTypeId() === VanillaItems::AIR()->getTypeId())) {
                     continue;
                 }
 
                 if($item->getTypeId() === VanillaItems::AIR()->getTypeId() && isset($session->getUsableWardrobe()[$setId][$slot])) {
                     $session->addItem($setId, $slot, VanillaItems::AIR(), true);
-                } elseif($item->getTypeId() !== VanillaItems::AIR()->getTypeId() && !isset($session->getUsableWardrobe()[$setId][$slot])) {
+                } elseif($item->getTypeId() !== VanillaItems::AIR()->getTypeId() && (!isset($session->getUsableWardrobe()[$setId][$slot]) || $session->getUsableWardrobe()[$setId][$slot]->getTypeId() === VanillaItems::AIR()->getTypeId())) {
                     $session->addItem($setId, $slot, $item);
                 }
             }
