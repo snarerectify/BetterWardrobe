@@ -38,7 +38,7 @@ class WardrobeViewSubCommand extends BaseSubCommand
         if(!$sender instanceof Player) return;
 
         if(!isset($args["player"]) || ($targetSession = BetterWardrobe::getBetterWardrobe()->getSessionManager()->getSession($args["player"])) === null) {
-            $sender->sendMessage(BetterWardrobe::getBetterWardrobe()->getConfig()->get("specify-valid-player"));
+            $sender->sendMessage(BetterWardrobe::getBetterWardrobe()->getConfig()->get("invalid-player"));
             return;
         }
 

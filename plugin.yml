@@ -11,6 +11,8 @@ permissions:
     default: true
   betterwardrobe.view.command:
     default: true
+  betterwardrobe.equip.command:
+    default: true
   betterwardrobe.slot.0:
     default: true
   betterwardrobe.slot.1:
