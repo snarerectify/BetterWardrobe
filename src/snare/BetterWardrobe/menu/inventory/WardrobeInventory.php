@@ -10,7 +10,6 @@ use muqsit\invmenu\transaction\InvMenuTransactionResult;
 use muqsit\invmenu\type\InvMenuTypeIds;
 use pocketmine\block\utils\DyeColor;
 use pocketmine\block\VanillaBlocks;
-use pocketmine\color\Color;
 use pocketmine\item\Armor;
 use pocketmine\item\Item;
 use pocketmine\item\VanillaItems;
@@ -38,7 +37,7 @@ class WardrobeInventory
 
             if(!in_array($action->getSlot(), range("36", 44))) return $transaction->discard();
 
-            if(!$transaction->getPlayer()->hasPermission("betterwardrobe.slot.") . $action->getSlot() - 36) {
+            if(!$transaction->getPlayer()->hasPermission("betterwardrobe.slot." . $action->getSlot() - 36)) {
                 $transaction->getPlayer()->sendMessage(TextFormat::colorize(BetterWardrobe::getBetterWardrobe()->getConfig()->get("no-permission")));
                 $transaction->getPlayer()->removeCurrentWindow();
                 return $transaction->discard();
