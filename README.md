@@ -1,3 +1,5 @@
+[![](https://poggit.pmmp.io/shield.state/BetterWardrobe)](https://poggit.pmmp.io/p/BetterWardrobe)
+
 # BetterWardrobe
 
 Advanced wardrobe plugin for Pocketmine-MP.
